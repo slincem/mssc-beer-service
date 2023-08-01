@@ -1,4 +1,4 @@
-package guru.springframework.msscbeerservice.we.controller;
+package guru.springframework.msscbeerservice.web.controller;
 
 import guru.springframework.msscbeerservice.web.model.BeerDto;
 import org.springframework.http.HttpStatus;
@@ -25,5 +25,5 @@ public class BeerController {
     public ResponseEntity updateBeerById(@PathVariable UUID beerId, @RequestBody BeerDto beerDto) {
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
-    
+
 }
