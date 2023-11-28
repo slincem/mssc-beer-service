@@ -3,11 +3,16 @@ package guru.springframework.msscbeerservice.bootstrap;
 import guru.springframework.msscbeerservice.domain.Beer;
 import guru.springframework.msscbeerservice.repositories.BeerRepository;
 import org.springframework.boot.CommandLineRunner;
+import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 
-@Deprecated
-//@Component
+/**
+ * It is also possible to load the data from a sql script... but in that case we cannot verify if
+ * the data already exists. So, it is smarter to, in case we want to preload data, and we are not using
+ * and embedded DB, load the data from a bootstrap class.
+ */
+@Component
 public class BeerLoader implements CommandLineRunner {
 
     public static final String BEER_1_UPC = "0631234200036";
@@ -37,7 +42,7 @@ public class BeerLoader implements CommandLineRunner {
                     .build());
             beerRepository.save(Beer.builder()
                     .beerName("Aguila")
-                    .beerStyle("ALE")
+                    .beerStyle("PALE_ALE")
                     .quantityToBrew(200)
                     .minOnHand(12)
                     .upc(BEER_2_UPC)
@@ -45,7 +50,7 @@ public class BeerLoader implements CommandLineRunner {
                     .build());
             beerRepository.save(Beer.builder()
                     .beerName("Pilsen")
-                    .beerStyle("ALE")
+                    .beerStyle("PORTER")
                     .quantityToBrew(200)
                     .minOnHand(12)
                     .upc(BEER_3_UPC)
