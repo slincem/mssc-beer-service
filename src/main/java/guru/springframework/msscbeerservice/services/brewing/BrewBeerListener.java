@@ -29,7 +29,7 @@ public class BrewBeerListener {
         beerDto.setQuantityOnHand(beer.getQuantityToBrew()); //This in order to simplify
 
         NewInventoryEvent newInventoryEvent = new NewInventoryEvent(beerDto);
-        log.info("Brewed beer " + beer.getMinOnHand() + " : QOH: " + beerDto.getQuantityOnHand());
+        log.debug("Brewed beer " + beer.getMinOnHand() + " : QOH: " + beerDto.getQuantityOnHand());
         rabbitTemplate.convertAndSend(RabbitMQConfig.TOPIC_EXCHANGE_NAME, "inventory.new", newInventoryEvent);
     }
 }
