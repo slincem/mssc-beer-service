@@ -4,7 +4,7 @@ package guru.springframework.msscbeerservice.services.beerorder;
 import guru.springframework.msscbeerservice.config.RabbitMQConfig;
 import guru.springframework.msscbeerservice.events.BeerOrderDto;
 import guru.springframework.msscbeerservice.events.ValidateBeerOrderRequest;
-import guru.springframework.msscbeerservice.events.ValidateOrderResult;
+import guru.springframework.msscbeerservice.events.ValidateBeerOrderResult;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
@@ -26,7 +26,7 @@ public class BeerOrderValidationListener {
     public void listenBeerOrderToValidate(ValidateBeerOrderRequest validateBeerOrderRequest) {
         BeerOrderDto beerOrderDto = validateBeerOrderRequest.getBeerOrderDto();
         boolean isValid = beerOrderValidator.isBeerOrderValid(beerOrderDto);
-        ValidateOrderResult message = ValidateOrderResult.builder().beerOrderId(beerOrderDto.getId()).isValid(isValid).build();
+        ValidateBeerOrderResult message = ValidateBeerOrderResult.builder().beerOrderId(beerOrderDto.getId()).isValid(isValid).build();
 
         rabbitTemplate.convertAndSend(RabbitMQConfig.VALIDATE_ORDER_RESULT_EXCHANGE, RabbitMQConfig.VALIDATE_ORDER_RESULT_ROUTING_KEY, message);
     }
