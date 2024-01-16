@@ -19,9 +19,9 @@ public class RabbitMQConfig {
     // Esta es creada en Order-Service, por lo que solo necesito su nombre.
     public static final String VALIDATE_ORDER_QUEUE = "validate-order-queue";
 
-    public static final String VALIDATE_ORDER_RESULT_EXCHANGE = "validate-order-result-exchange";
-    public static final String VALIDATE_ORDER_RESULT_QUEUE = "validate-order-result-queue";
-    public static final String VALIDATE_ORDER_RESULT_ROUTING_KEY = "validate-order-result";
+    public static final String VALIDATE_BEER_ORDER_RESULT_EXCHANGE = "validate-beer-order-result-exchange";
+    public static final String VALIDATE_BEER_ORDER_RESULT_QUEUE = "validate-beer-order-result-queue";
+    public static final String VALIDATE_BEER_ORDER_RESULT_ROUTING_KEY = "validate-beer-order-result";
 
     /*
      * TOPIC EXCHANGE, WORKS FOR DIFFERENT ROUTING KEY DEFINITIONS: (BREWING - NEW INVENTORY    IN THIS CASE).
@@ -64,17 +64,17 @@ public class RabbitMQConfig {
      */
     @Bean
     DirectExchange validateOrderResultExchange() {
-        return new DirectExchange(VALIDATE_ORDER_RESULT_EXCHANGE);
+        return new DirectExchange(VALIDATE_BEER_ORDER_RESULT_EXCHANGE);
     }
 
     @Bean
     Queue validateOrderResultQueue() {
-        return new Queue(VALIDATE_ORDER_RESULT_QUEUE, false);
+        return new Queue(VALIDATE_BEER_ORDER_RESULT_QUEUE, false);
     }
 
     @Bean
     Binding validateOrderResultBinding(Queue validateOrderResultQueue, DirectExchange validateOrderResultExchange) {
-        return BindingBuilder.bind(validateOrderResultQueue).to(validateOrderResultExchange).with(VALIDATE_ORDER_RESULT_ROUTING_KEY);
+        return BindingBuilder.bind(validateOrderResultQueue).to(validateOrderResultExchange).with(VALIDATE_BEER_ORDER_RESULT_ROUTING_KEY);
     }
 
 

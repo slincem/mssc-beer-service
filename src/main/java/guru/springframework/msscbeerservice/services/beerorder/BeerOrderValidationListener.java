@@ -28,6 +28,6 @@ public class BeerOrderValidationListener {
         boolean isValid = beerOrderValidator.isBeerOrderValid(beerOrderDto);
         ValidateBeerOrderResult message = ValidateBeerOrderResult.builder().beerOrderId(beerOrderDto.getId()).isValid(isValid).build();
 
-        rabbitTemplate.convertAndSend(RabbitMQConfig.VALIDATE_ORDER_RESULT_EXCHANGE, RabbitMQConfig.VALIDATE_ORDER_RESULT_ROUTING_KEY, message);
+        rabbitTemplate.convertAndSend(RabbitMQConfig.VALIDATE_BEER_ORDER_RESULT_EXCHANGE, RabbitMQConfig.VALIDATE_BEER_ORDER_RESULT_ROUTING_KEY, message);
     }
 }
