@@ -22,7 +22,7 @@ public class BeerOrderValidationListener {
 
 
     @Transactional
-    @RabbitListener(queues = RabbitMQConfig.VALIDATE_ORDER_QUEUE)
+    @RabbitListener(queues = RabbitMQConfig.VALIDATE_BEER_ORDER_QUEUE)
     public void listenBeerOrderToValidate(ValidateBeerOrderRequest validateBeerOrderRequest) {
         BeerOrderDto beerOrderDto = validateBeerOrderRequest.getBeerOrderDto();
         boolean isValid = beerOrderValidator.isBeerOrderValid(beerOrderDto);

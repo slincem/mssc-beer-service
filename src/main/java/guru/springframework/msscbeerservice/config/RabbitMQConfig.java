@@ -17,7 +17,7 @@ public class RabbitMQConfig {
     public static final String NEW_INVENTORY_ROUTING_KEY = "inventory.#";
 
     // Esta es creada en Order-Service, por lo que solo necesito su nombre.
-    public static final String VALIDATE_ORDER_QUEUE = "validate-order-queue";
+    public static final String VALIDATE_BEER_ORDER_QUEUE = "validate-beer-order-queue";
 
     public static final String VALIDATE_BEER_ORDER_RESULT_EXCHANGE = "validate-beer-order-result-exchange";
     public static final String VALIDATE_BEER_ORDER_RESULT_QUEUE = "validate-beer-order-result-queue";
