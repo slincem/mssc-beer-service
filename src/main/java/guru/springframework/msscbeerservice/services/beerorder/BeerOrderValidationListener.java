@@ -24,6 +24,7 @@ public class BeerOrderValidationListener {
     @Transactional
     @RabbitListener(queues = RabbitMQConfig.VALIDATE_BEER_ORDER_QUEUE)
     public void listenBeerOrderToValidate(ValidateBeerOrderRequest validateBeerOrderRequest) {
+        log.debug("Received validation request for order: " + validateBeerOrderRequest.getBeerOrderDto().getId());
         BeerOrderDto beerOrderDto = validateBeerOrderRequest.getBeerOrderDto();
         boolean isValid = beerOrderValidator.isBeerOrderValid(beerOrderDto);
         ValidateBeerOrderResult message = ValidateBeerOrderResult.builder().beerOrderId(beerOrderDto.getId()).isValid(isValid).build();
