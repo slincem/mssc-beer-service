@@ -8,6 +8,7 @@ import guru.springframework.msscbeerservice.web.model.BeerDto;
 import guru.springframework.msscbeerservice.web.model.BeerPagedList;
 import guru.springframework.msscbeerservice.web.model.BeerStyleEnum;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -19,6 +20,7 @@ import java.util.UUID;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
+@Slf4j
 @RequiredArgsConstructor
 @Service
 public class BeerServiceImpl implements BeerService {
@@ -58,7 +60,7 @@ public class BeerServiceImpl implements BeerService {
     @Override
     public BeerPagedList listBeers(String beerName, BeerStyleEnum beerStyle, PageRequest pageRequest, Boolean showInventoryOnHand) {
 
-        System.out.println("listBeers I was called");
+        log.debug("listBeer Called");
         BeerPagedList beerPagedList;
         Page<Beer> beerPage;
 
@@ -91,6 +93,8 @@ public class BeerServiceImpl implements BeerService {
 
     @Override
     public BeerDto getByUpc(String beerUpc, Boolean showInventoryOnHand) {
+        log.debug("getBeerByUpc was Called. ID: " + beerUpc);
+
         Beer beer = beerRepository.findByUpc(beerUpc).orElseThrow(NotFoundException::new);
         return showInventoryOnHand ? beerMapper.beerToBeerDtoWithInventory(beer) : beerMapper.beerToBeerDto(beer);
     }
