@@ -1,5 +1,6 @@
 package guru.springframework.msscbeerservice.services.inventory;
 
+import guru.springframework.msscbeerservice.services.inventory.clients.InventoryServiceFeignClient;
 import guru.springframework.msscbeerservice.services.inventory.model.BeerInventoryDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -15,7 +16,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @Profile("local-discovery")
 @Service
-public class BeerInventoryServiceFeign implements BeerInventoryService {
+public class BeerInventoryServiceFeignImp implements BeerInventoryService {
 
     private final InventoryServiceFeignClient inventoryServiceFeignClient;
 
